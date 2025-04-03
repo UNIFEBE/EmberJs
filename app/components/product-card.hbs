@@ -1,0 +1,11 @@
+<div class="card">
+    <div class="card-body">
+        <h3><strong>{{@produto.nome}}</strong> - R$ {{@produto.preco}}</h3>
+        <p><em>{{@produto.descricao}}</em></p>
+
+        <div class="btn-group">
+            <button class="btn btn-green" type="button" {{on "click" (fn @editarProduto @produto)}}>Editar</button>
+            <button class="btn btn-red" type="button" {{on "click" (fn @removerProduto @produto.id)}}>Remover</button>
+        </div>
+    </div>
+</div>

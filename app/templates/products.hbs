@@ -1,0 +1,49 @@
+{{page-title "Cadastro de Produtos"}}
+
+<div class="container">
+    <h1>Gerenciamento de Produtos</h1>
+
+    <div>
+        <h3>Adicionar Novo Produto</h3>
+        <CustomInput @label="Nome:" @valor={{this.novoProduto.nome}} @onChange={{fn
+            this.atualizarCampoNovoProduto "nome" }} @type="text" />
+
+        <CustomInput @label="Descrição:" @valor={{this.novoProduto.descricao}} @onChange={{fn
+            this.atualizarCampoNovoProduto "descricao" }} @type="text" />
+
+
+        <CustomInput @label="Preço:" @valor={{this.novoProduto.preco}} @onChange={{fn
+            this.atualizarCampoNovoProduto "preco" }} @type="number" @step="0.01" />
+
+        <button class="add" type="button" {{on "click" this.adicionarProduto}}>Adicionar Produto</button>
+    </div>
+
+    <hr>
+
+    <h2>Lista de Produtos</h2>
+    <div class="product-list">
+        {{#each this.produtos as |produto|}}
+        <ProductCard @produto={{produto}} @editarProduto={{this.editarProduto}}
+            @removerProduto={{this.removerProduto}} />
+        {{/each}}
+    </div>
+
+    <hr>
+
+    {{#if this.editandoProduto}}
+    <h3>Editar Produto</h3>
+    <label>Nome:</label>
+    <input type="text" value={{this.editandoProduto.nome}} {{on "input" (fn this.atualizarCampoEdicao "nome" )}}>
+
+    <label>Descrição:</label>
+    <input type="text" value={{this.editandoProduto.descricao}} {{on "input" (fn this.atualizarCampoEdicao "descricao"
+        )}}>
+
+    <label>Preço:</label>
+    <input type="number" step="0.01" value={{this.editandoProduto.preco}} {{on "input" (fn
+        this.atualizarCampoEdicao "preco" )}}>
+
+    <button class="add" type="button" {{on "click" this.salvarEdicao}}>Salvar</button>
+    <button class="remove" type="button" {{on "click" this.cancelarEdicao}}>Cancelar</button>
+    {{/if}}
+</div>
